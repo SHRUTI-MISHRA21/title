@@ -1,0 +1,17 @@
+services:
+  python-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: python-app
+    restart: unless-stopped
+    init: true
+    # env_file: ./.env  # Uncomment if .env file exists
+    working_dir: /app
+    command: ["python", "app/main.py"]
+    # No ports exposed, as the app is a batch processor and does not provide a web interface
+    # No volumes defined, as persistence is not required for this batch processor
+    # No external dependencies detected (no database, cache, or message broker required)
+
+# No networks section needed as there is only one service and no inter-service communication
+# No volumes section needed as there are no persistent data requirements
